@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('homepage');
-});
+Route::get('/','homeController@index');
 
 Route::get('/admin', 'adminController@dashboard');
 Route::get('/add_category', 'categoryController@addcategory');
+Route::post('/save_category', 'categoryController@savecategory');
