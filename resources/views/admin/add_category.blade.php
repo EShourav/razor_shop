@@ -20,8 +20,14 @@
 									<label>Parent Cateogory</label>
 										<select class="form-control select2" style="width: 100%;" name="parent_category">
 										<option>Select</option>
-										<option>Audio & Video</option>
-										<option>Camera & Photo</option>
+										<?php
+										$all_category_info=DB::table('tbl_category')->get();
+											foreach($all_category_info as $v_category)
+											{
+												if( $v_category->parent_id==''){?>
+													<option>{{ $v_category->name }}</option>
+										<?php 	}
+											} ?>
 									</select>
 								</div>
 								<div class="form-group">

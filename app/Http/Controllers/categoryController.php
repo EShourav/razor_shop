@@ -21,6 +21,8 @@ class categoryController extends Controller
     {
     	$data = array();
     	$data['parent_id'] = $request->parent_category;
+    	if(strpos($data['parent_id'], "Select") !== false)
+			$data['parent_id']='';
     	$data['name'] = $request->category_name;
     	$data['eng'] = $request->category_eng;
     	if($data['eng']==NULL)
@@ -28,8 +30,14 @@ class categoryController extends Controller
     	$data['slug'] = $request->category_slug;
     	$data['order'] = $request->category_order;
     	$data['menu'] = $request->menu;
+    	if($data['menu']==NULL)
+    		$data['menu']=0;
     	$data['feature'] = $request->feature;
+    	if($data['feature']==NULL)
+    		$data['feature']=0;
     	$data['home'] = $request->home;
+    	if($data['home']==NULL)
+    		$data['home']=0;
 
     	$image=$request->file('category_image');
     	if($image)
