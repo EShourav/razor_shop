@@ -6,6 +6,7 @@
   <title>TechDen || Admin - Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/x-icon" href="{{asset('frontend/assets/images/favicon/favicon-2.png')}}" />
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{asset('adminlte/plugins/fontawesome-free/css/all.min.css')}}">
   <!-- Ionicons -->
@@ -77,7 +78,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+            <a href="{{ URL::to('/admin') }}" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -94,13 +95,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{URL::to('add_category')}}" class="nav-link">
+                <a href="{{URL::to('/add_category')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Category</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ URL::to('/all_category') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>All Category</p>
                 </a>
@@ -273,10 +274,10 @@
     @yield('admin_content')
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2021 <a href="https://projanmoit.com/">Projanmo IT Limited</a>.</strong>
-    All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.0.5
+      <strong>Copyright &copy; 2021 <a href="https://projanmoit.com/">Projanmo IT Limited</a>.</strong>
+    All rights reserved.
+    
     </div>
   </footer>
 

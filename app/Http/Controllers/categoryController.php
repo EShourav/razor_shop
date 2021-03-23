@@ -59,4 +59,9 @@ class categoryController extends Controller
     	DB::table('tbl_category')->insert($data);
     	return Redirect::to('/add_category');
     }
+
+    public function allcategory()
+    {
+    	return view('admin.all_category');
+    }
 }

@@ -16,5 +16,6 @@ Route::get('/','homeController@index');
 Route::get('/admin', 'adminController@dashboard');
 Route::get('/add_category', 'categoryController@addcategory');
 Route::post('/save_category', 'categoryController@savecategory');
+Route::get('/all_category', 'categoryController@allcategory');
 
-?>
+
