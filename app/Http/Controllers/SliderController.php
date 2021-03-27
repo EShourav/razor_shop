@@ -55,4 +55,23 @@ class SliderController extends Controller
     	DB::table('sliders')->insert($data);
     	return Redirect::to('/slider');
     }
+
+    public function sizeindex()
+    {
+        return view('admin.size');
+    }
+
+     public function addsizepage()
+    {
+        return view('admin.add_size');
+    }
+
+    public function savesize(Request $request)
+    {
+        $data = array();
+        $data['size'] = $request->size;
+        DB::table('size')->insert($data);
+        return Redirect::to('/size');
+    }
+
 }

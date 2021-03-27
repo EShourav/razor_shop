@@ -5,7 +5,7 @@
     	<div class="container-fluid">
 			<div class="card card-default">
 				<div class="card-header">
-					<h3 class="card-title">Add Category</h3>
+					<h3 class="card-title">Add Product</h3>
 					<div class="card-tools">
 						<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
 						<button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
@@ -13,59 +13,132 @@
 				</div>
 				<div class="card-body">
 					<div class="row">
-						<form class="card-body" action="#" method="post" enctype="multipart/form-data">
+						<form class="card-body" action="{{ URL::to('/save_product')}}" method="post" enctype="multipart/form-data">
 							{{ csrf_field() }}
 							<div class="col-md-12">
 								<div class="form-group">
-									<label>Parent Cateogory</label>
-										<select class="form-control select2" style="width: 100%;" name="parent_category">
+									<label>Cateogory *</label>
+										<select class="form-control select2" style="width: 100%;" name="category_id" required="">
 										<option>Select</option>
 										<?php
 										$all_category_info=DB::table('tbl_category')->get();
 											foreach($all_category_info as $v_category)
 											{
-												if( $v_category->parent_id==''){?>
-													<option>{{ $v_category->name }}</option>
+												if( $v_category->parent_id!=''){?>
+													<option value="{{ $v_category->id }}">{{ $v_category->name }}</option>
 										<?php 	}
 											} ?>
 									</select>
 								</div>
 								<div class="form-group">
-									<label for="exampleInputEmail1">Category Name *</label>
-									<input type="text" class="form-control" id="exampleInputEmail1" placeholder="100 characters maximum" name="category_name" required="">
+									<label>Brand *</label>
+										<select class="form-control select2" style="width: 100%;" name="brand_id" required="">
+										<option>Select</option>
+										<?php
+										$all_brand_info=DB::table('tbl_brands')->get();
+											foreach($all_brand_info as $v_brand)
+											{?>
+												<option value="{{ $v_brand->id }}">{{ $v_brand->name }}</option>
+										<?php
+											} ?>
+									</select>
+								</div>
+
+								<div class="form-group">
+									<label for="exampleInputEmail1">Size *</label>
+									<input type="text" class="form-control" id="exampleInputEmail1" placeholder="100 characters maximum" name="size" required="">
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1">Colour *</label>
+									<input type="text" class="form-control" id="exampleInputEmail1" placeholder="100 characters maximum" name="colour" required="">
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1">Title *</label>
+									<input type="text" class="form-control" id="exampleInputEmail1" placeholder="100 characters maximum" name="title" required="">
 								</div>
 								<div class="form-group">
 									<label for="exampleInputEmail1">Eng</label>
-									<input type="text" class="form-control" id="exampleInputEmail1" placeholder="200 characters maximum" name="category_eng">
+									<input type="text" class="form-control" id="exampleInputEmail1" placeholder="100 characters maximum" name="eng">
 								</div>
 								<div class="form-group">
-									<label for="exampleInputEmail1">Slug *</label>
-									<input type="text" class="form-control" id="exampleInputEmail1" placeholder="200 characters maximum" name="category_slug" required="">
+									<label for="exampleInputEmail1">Slug</label>
+									<input type="text" class="form-control" id="exampleInputEmail1" placeholder="200 characters maximum" name="slug">
 								</div>
 								<div class="form-group">
-									<label for="exampleInputFile">Image</label>
+									<label for="exampleInputEmail1">Product Code *</label>
+									<input type="text" class="form-control" id="exampleInputEmail1" placeholder="200 characters maximum" name="product_code" required="">
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1">Sell Price *</label>
+									<input type="text" class="form-control" id="exampleInputEmail1" placeholder="200 characters maximum" name="sell_price" required="">
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1">Discount</label>
+									<input type="text" class="form-control" id="exampleInputEmail1" placeholder="200 characters maximum" name="discount">
+								</div>
+							
+								<div class="form-group">
+									<label for="exampleInputEmail1">Regular Price *</label>
+									<input type="text" class="form-control" id="exampleInputEmail1" placeholder="200 characters maximum" name="regular_price" required="">
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1">Short Description *</label>
+						            <div class="card-body pad">
+						            	<div class="mb-3">
+						                	<textarea class="textarea" name="short_description" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" required=""></textarea>
+						                </div>
+						            </div>
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1">Long Description *</label>
+						            <div class="card-body pad">
+						            	<div class="mb-3">
+						                	<textarea class="textarea" name="long_description" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" required=""></textarea>
+						                </div>
+						            </div>
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1">Meta Description</label>
+									<input type="text" class="form-control" id="exampleInputEmail1" placeholder="200 characters maximum" name="meta_description">
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1">Meta Keyword</label>
+									<input type="text" class="form-control" id="exampleInputEmail1" placeholder="200 characters maximum" name="meta_keyword">
+								</div>
+								<div class="form-group">
+									<label for="exampleInputFile">Cover Image</label>
 									<div class="input-group">
 										<div class="custom-file">
-											<input type="file" class="custom-file-input" name="category_image" id="exampleInputFile">
+											<input type="file" class="custom-file-input" name="cover_image" id="exampleInputFile" required="">
 											<label class="custom-file-label" for="exampleInputFile">Choose file</label>
 										</div>
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="exampleInputEmail1">Order *</label>
-									<input type="text" class="form-control" id="exampleInputEmail1" placeholder="20 characters maximum" name="category_order" required="">
+									<label for="exampleInputFile">Another Image 1</label>
+									<div class="input-group">
+										<div class="custom-file">
+											<input type="file" class="custom-file-input" name="other_image_1" id="exampleInputFile">
+											<label class="custom-file-label" for="exampleInputFile">Choose file</label>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="exampleInputFile">Another Image 2</label>
+									<div class="input-group">
+										<div class="custom-file">
+											<input type="file" class="custom-file-input" name="other_image_2" id="exampleInputFile">
+											<label class="custom-file-label" for="exampleInputFile">Choose file</label>
+										</div>
+									</div>
 								</div>
 								<div class="form-check">
-									<input type="checkbox" class="form-check-input" name="menu" id="exampleCheck1" value="1">
-									<label class="form-check-label" for="exampleCheck1">Menu</label>
+									<input type="checkbox" class="form-check-input" name="availability" id="exampleCheck1" value="1">
+									<label class="form-check-label" for="exampleCheck1">Availability</label>
 								</div>
 								<div class="form-check">
-									<input type="checkbox" class="form-check-input" name="feature" id="exampleCheck1" value="1">
-									<label class="form-check-label" for="exampleCheck1">Feature</label>
-								</div>
-								<div class="form-check">
-									<input type="checkbox" class="form-check-input" name="home" id="exampleCheck1" value="1">
-									<label class="form-check-label" for="exampleCheck1">Home</label>
+									<input type="checkbox" class="form-check-input" name="status" id="exampleCheck1" value="1">
+									<label class="form-check-label" for="exampleCheck1">Publish</label>
 								</div>
 								<div class="card-footer">
 									<button type="submit" class="btn btn-primary">Submit</button>

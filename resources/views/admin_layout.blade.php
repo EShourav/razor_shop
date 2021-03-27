@@ -260,6 +260,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="{{ URL::to('/size') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Size</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="pages/forms/advanced.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Policy</p>

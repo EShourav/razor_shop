@@ -21,10 +21,13 @@ Route::get('/add_brand', 'brandController@addbrand');
 Route::post('/save_brand','brandController@savebrand');
 Route::get('/all_brand', 'brandController@allbrand');
 Route::get('/add_product', 'productController@addproduct');
-/*Route::post('/save_product','brandController@savebrand');
-Route::get('/all_product', 'brandController@allbrand');*/
+Route::post('/save_product','productController@saveproduct');
+//Route::get('/all_product', 'brandController@allbrand');
 Route::get('/slider', 'SliderController@index');
 Route::get('/add_slider', 'SliderController@addsliderpage');
 Route::post('/save_slider','SliderController@saveslider');
+Route::get('/size', 'SliderController@sizeindex');
+Route::get('/add_size', 'SliderController@addsizepage');
+Route::post('/save_size','SliderController@savesize');
 
 
