@@ -1,145 +1,151 @@
 @extends('layout')
 @section('user_content')
-<div class="header-menu  d-xl-block d-none bg-light-gray">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-2 custom-col-3">
-                <div class="header-menu-vertical bg-blue">
-                    <h4 class="menu-title be-af-none">All Cattegories</h4>
-                    <ul class="menu-content display-block">
-                        <?php
-                        $all_category_info=DB::table('tbl_category')->get();
-                        foreach($all_category_info as $v_category)
-                        {
-                            if( $v_category->parent_id==''){?>
-                                <li class="menu-item">
-                                    <a href="#">{{ $v_category->name }} <i class="ion-ios-arrow-right"></i></a>
-                                <?php
-                                $now_cat=$v_category->name;
-                                $all_sub_cat = DB::table('tbl_category')
-                                                ->where('parent_id', $now_cat)
-                                                ->get();
-                                foreach($all_sub_cat as $v_cat){?>
-                                    <ul class="sub-menu flex-wrap">
-                                        <li>
-                                            <ul class="submenu-item">
-                                                <li><a href="#">{{ $v_cat -> name }}</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                <?php
-                                }?>
-                                </li><?php
-                            }
-                        }?>
+    <div class="header-menu  d-xl-block d-none bg-light-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 custom-col-3">
+                    <div class="header-menu-vertical bg-blue">
+                        <h4 class="menu-title be-af-none">All Cattegories</h4>
+                        <ul class="menu-content display-block">
+                            <?php
+                            $all_category_info=DB::table('tbl_category')->get();
+                            foreach($all_category_info as $v_category)
+                            {
+                                if( $v_category->parent_id==''){?>
+                                    <li class="menu-item">
+                                        <a href="#">{{ $v_category->name }} <i class="ion-ios-arrow-right"></i></a>
+                                    <?php
+                                    $now_cat=$v_category->name;
+                                    $all_sub_cat = DB::table('tbl_category')
+                                                    ->where('parent_id', $now_cat)
+                                                    ->get();
+                                    foreach($all_sub_cat as $v_cat){?>
+                                        <ul class="sub-menu flex-wrap">
+                                            <li>
+                                                <ul class="submenu-item">
+                                                    <li><a href="#">{{ $v_cat -> name }}</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    <?php
+                                    }?>
+                                    </li><?php
+                                }
+                            }?>
+                                    
+                                    <!-- <li>
+                                        <img src="{{URL::to('frontend/assets/images/menu-image/banner-mega1.jpg')}}" alt="" />
+                                    </li> --> 
+                        </ul>
+                        <!-- menu content -->
+                    </div>
+                    <!-- header menu vertical -->
+                </div>
+                <div class="col-lg-7 custom-col custom-col-3">
+                <!-- Slider Start -->
+                    <div class="slider-area slider-height-2">
+                        <div class="hero-slider swiper-container">
+                            <div class="swiper-wrapper">
+                                <!-- Single Slider  -->
+                                <?php 
+                                    $all_slider_info=DB::table('sliders')->get();
+                                    foreach($all_slider_info as $v_slider)
+                                    {
+                                        if($v_slider->status==1 && $v_slider->place==1 ){
+                                ?>
+
+                                <div class="swiper-slide bg-img d-flex" style="background-image: url({{ $v_slider->image }});">
+                                    <div class="container align-self-center">
+                                        <div class="slider-content-1 slider-animated-1 text-left pl-60px">
+                                            <span class="animated color-white">GALAXY WATCH</span>
+                                            <h1 class="animated color-white">
+                                                Pre-Order <br />
+                                                <strong>Exclusive</strong>
+                                            </h1>
+                                            <a href="shop-4-column.html" class="shop-btn animated">SHOP NOW</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php }} ?>
                                 
-                                <!-- <li>
-                                    <img src="{{URL::to('frontend/assets/images/menu-image/banner-mega1.jpg')}}" alt="" />
-                                </li> --> 
-                    </ul>
-                    <!-- menu content -->
-                </div>
-                <!-- header menu vertical -->
-            </div>
-            <div class="col-lg-7 custom-col custom-col-3">
-            <!-- Slider Start -->
-                <div class="slider-area slider-height-2">
-                    <div class="hero-slider swiper-container">
-                        <div class="swiper-wrapper">
-                            <!-- Single Slider  -->
-                            <div class="swiper-slide bg-img d-flex" style="background-image: url(frontend/assets/images/slider-image/sample-3.jpg);">
-                                <div class="container align-self-center">
-                                    <div class="slider-content-1 slider-animated-1 text-left pl-60px">
-                                        <span class="animated color-white">GALAXY WATCH</span>
-                                        <h1 class="animated color-white">
-                                            Pre-Order <br />
-                                            <strong>Exclusive</strong>
-                                        </h1>
-                                        <a href="shop-4-column.html" class="shop-btn animated">SHOP NOW</a>
-                                    </div>
-                                </div>
+                                <!-- Single Slider  -->
                             </div>
-                            <!-- Single Slider  -->
-                            <div class="swiper-slide bg-img d-flex" style="background-image: url(frontend/assets/images/slider-image/sample-4.jpg);">
-                                <div class="container align-self-center">
-                                    <div class="slider-content-1 slider-animated-1 text-left pl-60px">
-                                        <span class="animated color-white">BT HEADPHONE</span>
-                                        <h1 class="animated color-white">
-                                            Headset <br />
-                                            <strong>Hyper X</strong>
-                                        </h1>
-                                        <a href="shop-4-column.html" class="shop-btn animated">SHOP NOW</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Slider  -->
+                            <!-- Add Pagination -->
+                            <div class="swiper-pagination swiper-pagination-white"></div>
                         </div>
-                        <!-- Add Pagination -->
-                        <div class="swiper-pagination swiper-pagination-white"></div>
+                    </div>
+                    <!-- Slider End -->
+                </div>
+                <div class="col-lg-3">
+                    <div class="banner-area banner-area-2">
+                        <div class="banner-wrapper mb-15px">
+                        <?php
+                            foreach($all_slider_info as $v_slider)
+                            {
+                                if($v_slider->status==1 && $v_slider->place==2 ){
+                        ?>
+                            <a href="shop-4-column.html"><img src="{{ $v_slider-> image}}" alt="" style="width: 345px; height: 200px;" /></a>
+                        <?php } ?>
+                        </div>
+                        <div class="banner-wrapper">
+                        <?php
+                                if($v_slider->status==1 && $v_slider->place==3 ){
+                        ?>
+                            <a href="shop-4-column.html"><img src="{{ $v_slider-> image}}" alt="" style="width: 345px; height: 200px;" /></a>
+                        <?php }} ?>
+                        </div>
                     </div>
                 </div>
-                <!-- Slider End -->
             </div>
-            <div class="col-lg-3">
-                <div class="banner-area banner-area-2">
-                    <div class="banner-wrapper mb-15px">
-                        <a href="shop-4-column.html"><img src="{{URL::to('frontend/assets/images/banner-image/9.jpg')}}" alt="" /></a>
-                    </div>
-                    <div class="banner-wrapper">
-                        <a href="shop-4-column.html"><img src="{{URL::to('frontend/assets/images/banner-image/10.jpg')}}" alt="" /></a>
+            <!-- row -->
+        </div>
+        <!-- container -->
+        <!-- Static Area Start -->
+        <div class="static-area  ptb-40px">
+            <div class="container">
+                <div class="static-area-wrap">
+                    <div class="row">
+                        <!-- Static Single Item Start -->
+                        <div class="col-lg-4 col-xs-12 col-md-6 col-sm-6 mb-md-30px mb-lm-30px">
+                            <div class="single-static">
+                                <img src="{{URL::to('frontend/assets/images/icons/static-icons-2.png')}}" alt="" class="img-responsive" />
+                                <div class="single-static-meta">
+                                    <h4>Free Returns</h4>
+                                    <p>Returns are free within 9 days</p>
+                                </div>
+                                        </div>
+                        </div>
+                        <!-- Static Single Item End -->
+                        <!-- Static Single Item Start -->
+                        <div class="col-lg-4 col-xs-12 col-md-6 col-sm-6 mb-sm-30px">
+                            <div class="single-static">
+                                <img src="{{URL::to('frontend/assets/images/icons/static-icons-4.png')}}" alt="" class="img-responsive" />
+                                <div class="single-static-meta">
+                                    <h4>Support 24/7</h4>
+                                    <p>Contact us 24 hours a day</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Static Single Item End -->
+                        <!-- Static Single Item Start -->
+                        <div class="col-lg-4 col-xs-12 col-md-6 col-sm-6">
+                            <div class="single-static">
+                                <img src="{{URL::to('frontend/assets/images/icons/static-icons-3.png')}}" alt="" class="img-responsive" />
+                                <div class="single-static-meta">
+                                    <h4>100% Payment Secure</h4>
+                                    <p>Your payment are safe with us.</p>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- Static Single Item End -->
                     </div>
                 </div>
             </div>
         </div>
-        <!-- row -->
+                    <!-- Static Area End -->
     </div>
-                <!-- container -->
-                <!-- Static Area Start -->
-                <div class="static-area  ptb-40px">
-                    <div class="container">
-                        <div class="static-area-wrap">
-                            <div class="row">
-                                <!-- Static Single Item Start -->
-                                <div class="col-lg-4 col-xs-12 col-md-6 col-sm-6 mb-md-30px mb-lm-30px">
-                                    <div class="single-static">
-                                        <img src="{{URL::to('frontend/assets/images/icons/static-icons-2.png')}}" alt="" class="img-responsive" />
-                                        <div class="single-static-meta">
-                                            <h4>Free Returns</h4>
-                                            <p>Returns are free within 9 days</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Static Single Item End -->
-                                <!-- Static Single Item Start -->
-                                <div class="col-lg-4 col-xs-12 col-md-6 col-sm-6 mb-sm-30px">
-                                    <div class="single-static">
-                                        <img src="{{URL::to('frontend/assets/images/icons/static-icons-4.png')}}" alt="" class="img-responsive" />
-                                        <div class="single-static-meta">
-                                            <h4>Support 24/7</h4>
-                                            <p>Contact us 24 hours a day</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Static Single Item End -->
-                                <!-- Static Single Item Start -->
-                                <div class="col-lg-4 col-xs-12 col-md-6 col-sm-6">
-                                    <div class="single-static">
-                                        <img src="{{URL::to('frontend/assets/images/icons/static-icons-3.png')}}" alt="" class="img-responsive" />
-                                        <div class="single-static-meta">
-                                            <h4>100% Payment Secure</h4>
-                                            <p>Your payment are safe with us.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Static Single Item End -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Static Area End -->
-            </div>
             <!-- header menu -->
-        </header>
+</header>
         <!-- Header Section End Here -->    
 
         <!-- Mobile Header Section Start -->
@@ -190,16 +196,22 @@
                             <div class="search-category">
                                 <select>
                                     <option value="0">All categories</option>
-                                    <option value="12">Laptop</option>
-                                    <option value="13">- - Hot Categories</option>
-                                    <option value="19">- - - - Dresses</option>
-                                    <option value="20">- - - - Jackets &amp; Coats</option>
-                                    <option value="21">- - - - Sweaters</option>
-                                    <option value="22">- - - - Jeans</option>
-                                    <option value="23">- - - - Blouses &amp; Shirts</option>
-                                    <option value="14">- - Outerwear &amp; Jackets</option>
-                                    <option value="24">- - - - Basic Jackets</option>
-                                    <option value="25">- - - - Real Fur</option>
+                                    <?php 
+                                    $all_category_info=DB::table('tbl_category')->get();
+                                    foreach($all_category_info as $v_category)
+                                    {
+                                        if( $v_category->parent_id==''){
+                                ?>
+                                                <option value="12">{{$v_category->name}}</option>
+                                            <?php
+                                            foreach($all_category_info as $v_sub_cat){
+                                                if( $v_sub_cat->parent_id==$v_category->name){?>
+                                                    <option value="13">- - {{ $v_sub_cat-> name}}</option>
+                                            <?php }
+                                        }?>
+                                                
+                                    <?php }
+                                }?>
                                 </select>
                             </div>
                             <input type="text" placeholder="Enter your search key ... " />
@@ -227,16 +239,26 @@
                         <!-- Category Menu -->
                         <nav class="category-menu">
                             <ul>
+                                <?php 
+                                    $all_category_info=DB::table('tbl_category')->get();
+                                    foreach($all_category_info as $v_category)
+                                    {
+                                        if( $v_category->parent_id==''){
+                                ?>
                                 <li class="menu-item-has-children menu-item-has-children-6">
-                                    <a href="#">Video Game <i class="ion-ios-arrow-down"></i></a>
+                                    <a href="#">{{ $v_category->name }}<i class="ion-ios-arrow-down"></i></a>
                                     <!-- category submenu -->
+                                    <?php 
+                                    foreach($all_category_info as $v_sub_cat){
+                                        if( $v_sub_cat->parent_id==$v_category->name){?>
                                     <ul class="category-mega-menu category-mega-menu-6">
-                                        <li><a href="#">Handheld Game Players</a></li>
-                                        <li><a href="#">Game Controllers</a></li>
-                                        <li><a href="#">Joysticks</a></li>
-                                        <li><a href="#">Stickers</a></li>
+                                        <li><a href="#">{{ $v_sub_cat -> name}}</a></li>
                                     </ul>
+                                <?php }} ?>
                                 </li>
+                                                
+                                <?php }
+                                }?>
                                 <li><a href="#">Televisions</a></li>
                                 <li class="hidden"><a href="#">Projectors</a></li>
                                 <li>
@@ -597,78 +619,23 @@
                 </div>
                 <div class="category-slider slider-nav-style-1">
                     <div class="category-slider-wrapper swiper-wrapper">
+                        <?php 
+                            foreach ($all_category_info as $key => $v_category) {
+                                if($v_category->parent_id==''){
+                        ?>
                         <div class="category-slider-item swiper-slide">
                             <div class="category-slider-bg ">
                                 <div class="thumb-category">
                                     <a href="single-product.html">
-                                        <img src="{{URL::to('frontend/assets/images/product-image/2-1.jpg')}}" alt="product-image.jpg" />
+                                        <img src="{{$v_category->image}}" alt="product-image.jpg" />
                                     </a>
                                 </div>
                                 <div class="category-discript">
-                                    <h4>Smart Electronics</h4>
+                                    <h4>{{ $v_category->name}}</h4>
                                 </div>
                             </div>
                         </div>
-                        <div class="category-slider-item swiper-slide">
-                            <div class="category-slider-bg ">
-                                <div class="thumb-category">
-                                    <a href="single-product.html">
-                                        <img src="{{URL::to('frontend/assets/images/product-image/2-2.jpg')}}" alt="product-image.jpg" />
-                                    </a>
-                                </div>
-                                <div class="category-discript">
-                                    <h4>Audio & Video</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="category-slider-item swiper-slide">
-                            <div class="category-slider-bg ">
-                                <div class="thumb-category">
-                                    <a href="single-product.html">
-                                        <img src="{{URL::to('frontend/assets/images/product-image/2-3.jpg')}}" alt="product-image.jpg" />
-                                    </a>
-                                </div>
-                                <div class="category-discript">
-                                    <h4>Video Games</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="category-slider-item swiper-slide">
-                            <div class="category-slider-bg ">
-                                <div class="thumb-category">
-                                    <a href="single-product.html">
-                                        <img src="{{URL::to('frontend/assets/images/product-image/2-4.jpg')}}" alt="product-image.jpg" />
-                                    </a>
-                                </div>
-                                <div class="category-discript">
-                                    <h4>Portable Audio & Video</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="category-slider-item swiper-slide">
-                            <div class="category-slider-bg ">
-                                <div class="thumb-category">
-                                    <a href="single-product.html">
-                                        <img src="{{URL::to('frontend/assets/images/product-image/2-5.jpg')}}" alt="product-image.jpg" />
-                                    </a>
-                                </div>
-                                <div class="category-discript">
-                                    <h4>Camera & Photo</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="category-slider-item swiper-slide">
-                            <div class="category-slider-bg ">
-                                <div class="thumb-category">
-                                    <a href="single-product.html">
-                                        <img src="{{URL::to('frontend/assets/images/product-image/2-1.jpg')}}" alt="product-image.jpg" />
-                                    </a>
-                                </div>
-                                <div class="category-discript">
-                                    <h4>Smart Electronics</h4>
-                                </div>
-                            </div>
-                        </div>
+                    <?php }}?>
                     </div>
                     <!-- Add Arrows -->
                     <div class="swiper-buttons">

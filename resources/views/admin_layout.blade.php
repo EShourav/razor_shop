@@ -112,13 +112,36 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
+                Brands
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{URL::to('/add_brand')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Brand</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ URL::to('/all_brand') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>All Brands</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
                 Product
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{URL::to('add_category')}}" class="nav-link">
+                <a href="{{URL::to('/add_product')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Product</p>
                 </a>
@@ -231,7 +254,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
+                <a href="{{ URL::to('/slider') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Slider</p>
                 </a>

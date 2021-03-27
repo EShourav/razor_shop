@@ -17,5 +17,14 @@ Route::get('/admin', 'adminController@dashboard');
 Route::get('/add_category', 'categoryController@addcategory');
 Route::post('/save_category', 'categoryController@savecategory');
 Route::get('/all_category', 'categoryController@allcategory');
+Route::get('/add_brand', 'brandController@addbrand');
+Route::post('/save_brand','brandController@savebrand');
+Route::get('/all_brand', 'brandController@allbrand');
+Route::get('/add_product', 'productController@addproduct');
+/*Route::post('/save_product','brandController@savebrand');
+Route::get('/all_product', 'brandController@allbrand');*/
+Route::get('/slider', 'SliderController@index');
+Route::get('/add_slider', 'SliderController@addsliderpage');
+Route::post('/save_slider','SliderController@saveslider');
 
 

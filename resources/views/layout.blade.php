@@ -116,12 +116,22 @@
                                         <div class="search-category">
                                             <select>
                                                 <option value="0">All categories</option>
-                                                <option value="12">Laptop</option>
-                                                <option value="13">- - Hot Categories</option>
-                                                <option value="19">- - - - Dresses</option>
-                                                <option value="20">- - - - Jackets &amp; Coats</option>
-                                                <option value="21">- - - - Sweaters</option>
-                                                <option value="22">- - - - Jeans</option>
+                                <?php 
+                                    $all_category_info=DB::table('tbl_category')->get();
+                                    foreach($all_category_info as $v_category)
+                                    {
+                                        if( $v_category->parent_id==''){
+                                ?>
+                                                <option value="12">{{$v_category->name}}</option>
+                                            <?php
+                                            foreach($all_category_info as $v_sub_cat){
+                                                if( $v_sub_cat->parent_id==$v_category->name){?>
+                                                    <option value="13">- - {{ $v_sub_cat-> name}}</option>
+                                            <?php }
+                                        }?>
+                                                
+                                    <?php }
+                                }?>
                                             </select>
                                         </div>
                                         <input type="text" placeholder="Enter your search key ... " />
