@@ -383,12 +383,6 @@
             <div class="offcanvas-menu">
                 <ul>
                     <li><a href="#"><span class="menu-text">Home</span></a>
-                        <ul class="sub-menu">
-                            <li><a href="index.html"><span class="menu-text">Home 1</span></a></li>
-                            <li><a href="index-2.html"><span class="menu-text">Home 2</span></a></li>
-                            <li> <a href="index-3.html"><span class="menu-text">Home 3</span></a></li>
-                            <li><a href="index-4.html"><span class="menu-text">Home 4</span></a></li>
-                        </ul>
                     </li>
                     <li><a href="#"><span class="menu-text">Shop</span></a>
                         <ul class="sub-menu">
@@ -396,38 +390,24 @@
                                 <a href="#"><span class="menu-text">Shop Grid</span></a>
                                 <ul class="sub-menu">
                                     <li><a href="shop-3-column.html">Shop Grid 3 Column</a></li>
-                                    <li><a href="shop-4-column.html">Shop Grid 4 Column</a></li>
-                                    <li><a href="shop-left-sidebar.html">Shop Grid Left Sidebar</a></li>
-                                    <li><a href="shop-right-sidebar.html">Shop Grid Right Sidebar</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <a href="#"><span class="menu-text">Shop List</span></a>
                                 <ul class="sub-menu">
                                     <li><a href="shop-list.html">Shop List</a></li>
-                                    <li><a href="shop-list-left-sidebar.html">Shop List Left Sidebar</a></li>
-                                    <li><a href="shop-list-right-sidebar.html">Shop List Right Sidebar</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <a href="#"><span class="menu-text">Shop Single</span></a>
                                 <ul class="sub-menu">
                                     <li><a href="single-product.html">Shop Single</a></li>
-                                    <li><a href="single-product-variable.html">Shop Variable</a></li>
-                                    <li><a href="single-product-affiliate.html">Shop Affiliate</a></li>
-                                    <li><a href="single-product-group.html">Shop Group</a></li>
-                                    <li><a href="single-product-tabstyle-2.html">Shop Tab 2</a></li>
-                                    <li><a href="single-product-tabstyle-3.html">Shop Tab 3</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <a href="#"><span class="menu-text">Shop Single</span></a>
                                 <ul class="sub-menu">
                                     <li><a href="single-product-slider.html">Shop Slider</a></li>
-                                    <li><a href="single-product-gallery-left.html">Shop Gallery Left</a></li>
-                                    <li><a href="single-product-gallery-right.html">Shop Gallery Right</a></li>
-                                    <li><a href="single-product-sticky-left.html">Shop Sticky Left</a></li>
-                                    <li><a href="single-product-sticky-right.html">Shop Sticky Right</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -448,19 +428,16 @@
                             <li><a href="#"><span class="menu-text">Blog Grid</span></a>
                                 <ul class="sub-menu">
                                     <li><a href="blog-grid-left-sidebar.html">Blog Grid Left Sidebar</a></li>
-                                    <li><a href="blog-grid-right-sidebar.html">Blog Grid Right Sidebar</a></li>
                                 </ul>
                             </li>
                             <li><a href="#"><span class="menu-text">Blog List</span></a>
                                 <ul class="sub-menu">
                                     <li><a href="blog-list-left-sidebar.html">Blog List Left Sidebar</a></li>
-                                    <li><a href="blog-list-right-sidebar.html">Blog List Right Sidebar</a></li>
                                 </ul>
                             </li>
                             <li><a href="#"><span class="menu-text">Blog Single</span></a>
                                 <ul class="sub-menu">
                                     <li><a href="blog-single-left-sidebar.html">Blog Single Left Sidebar</a></li>
-                                    <li><a href="blog-single-right-sidebar.html">Blog Single Right Sidbar</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -525,19 +502,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- Single Slider  -->
-                                        <div class="swiper-slide bg-img d-flex" style="background-image: url(frontend/assets/images/slider-image/sample-4.jpg);">
-                                            <div class="container align-self-center">
-                                                <div class="slider-content-1 slider-animated-1 text-left pl-60px">
-                                                    <span class="animated color-white">BT HEADPHONE</span>
-                                                    <h1 class="animated color-white">
-                                                        Headset <br />
-                                                        <strong>Hyper X</strong>
-                                                    </h1>
-                                                    <a href="shop-4-column.html" class="shop-btn animated">SHOP NOW</a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                       
                                         <!-- Single Slider  -->
                                     </div>
                                     <!-- Add Pagination -->
@@ -659,23 +624,30 @@
                 <div class="feature-slider-two slider-nav-style-1 single-product-responsive">
                     <div class="feature-slider-wrapper swiper-wrapper">
                         <!-- Single Item -->
-                        <div class="feature-slider-item swiper-slide">
+                        <?php
+                            $all_product=DB::table('product')
+                                        ->join('tbl_category','product.category_id', '=', 'tbl_category.id')
+                                        ->join('tbl_brands','product.brand_id', '=', 'tbl_brands.id')
+                                        ->select('product.*', 'tbl_brands.*')
+                                        ->get();
+                            foreach ($all_product as $v_f_product) {           
+                        ?>
+                        <div class="feature-slider-item swiper-slide">    
                             <article class="list-product">
                                 <div class="img-block">
                                     <a href="single-product.html" class="thumbnail">
-                                        <img class="first-img" src="{{URL::to('frontend/assets/images/product-image/6.jpg')}}" alt="" />
+                                        <img class="first-img" src="{{ $v_f_product-> cover_photo }}" alt=""/>
                                     </a>
                                     <div class="quick-view">
                                         <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" data-toggle="modal" data-target="#exampleModal"></a>
-                                        <i class="icon-magnifier icons"></i>
                                     </div>
                                 </div>
                                 <ul class="product-flag">
                                     <li class="new">New</li>
                                 </ul>
                                 <div class="product-decs">
-                                    <a class="inner-link" href="shop-4-column.html"><span>STUDIO DESIGN</span></a>
-                                    <h2><a href="single-product.html" class="product-link">New Balance Arishi Sport v1</a></h2>
+                                    <a class="inner-link" href="shop-4-column.html"><span>{{ $v_f_product->name }}</span></a>
+                                    <h2><a href="single-product.html" class="product-link">{{ $v_f_product->title }}</a></h2>
                                     <div class="rating-product">
                                         <i class="ion-android-star"></i>
                                         <i class="ion-android-star"></i>
@@ -684,7 +656,7 @@
                                         <i class="ion-android-star"></i>
                                     </div>
                                         <ul>
-                                            <li class="old-price not-cut">€18.90</li>
+                                            <li class="old-price not-cut">{{ $v_f_product-> sell_price}} BDT</li>
                                         </ul>
                                 </div>
                                     <ul>
@@ -695,44 +667,10 @@
                                     </ul>
                             </article>
                         </div>
-                        <!-- Single Item -->
-                        <div class="feature-slider-item swiper-slide">
-                            <article class="list-product">
-                                <div class="img-block">
-                                    <a href="single-product.html" class="thumbnail">
-                                        <img class="first-img" src="{{URL::to('frontend/assets/images/product-image/6.jpg')}}" alt="" />
-                                    </a>
-                                    <div class="quick-view">
-                                        <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" data-toggle="modal" data-target="#exampleModal"></a>
-                                        <i class="icon-magnifier icons"></i>
-                                    </div>
-                                </div>
-                                <ul class="product-flag">
-                                    <li class="new">New</li>
-                                </ul>
-                                <div class="product-decs">
-                                    <a class="inner-link" href="shop-4-column.html"><span>STUDIO DESIGN</span></a>
-                                    <h2><a href="single-product.html" class="product-link">New Balance Arishi Sport v1</a></h2>
-                                    <div class="rating-product">
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                        <i class="ion-android-star"></i>
-                                    </div>
-                                        <ul>
-                                            <li class="old-price not-cut">€18.90</li>
-                                        </ul>
-                                </div>
-                                    <ul>
-                                        <li class="cart"><a class="cart-btn" href="#"><button type="button" class="btn btn-primary">ADD TO CART</button></a></li>
-                                        <li>
-                                            <a href="wishlist.html"><button type="button" class="btn btn-primary"><i class="icon-heart"></i></button></a>
-                                        </li>
-                                    </ul>
-                            </article>
-                        </div>
-                        <!-- Single Item -->
+                        <?php
+                            }
+                        ?>
+                        
                     </div>
                     <!-- Add Arrows -->
                     <div class="swiper-buttons">
