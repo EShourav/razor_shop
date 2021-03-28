@@ -62,7 +62,7 @@
                                                 Pre-Order <br />
                                                 <strong>Exclusive</strong>
                                             </h1>
-                                            <a href="shop-4-column.html" class="shop-btn animated">SHOP NOW</a>
+                                            <a href="{{URL::to('/shop')}}" class="shop-btn animated">SHOP NOW</a>
                                         </div>
                                     </div>
                                 </div>
@@ -84,14 +84,14 @@
                             {
                                 if($v_slider->status==1 && $v_slider->place==2 ){
                         ?>
-                            <a href="shop-4-column.html"><img src="{{ $v_slider-> image}}" alt="" style="width: 345px; height: 200px;" /></a>
+                            <a href="{{URL::to('/shop')}}"><img src="{{ $v_slider-> image}}" alt="" style="width: 345px; height: 200px;" /></a>
                         <?php } ?>
                         </div>
                         <div class="banner-wrapper">
                         <?php
                                 if($v_slider->status==1 && $v_slider->place==3 ){
                         ?>
-                            <a href="shop-4-column.html"><img src="{{ $v_slider-> image}}" alt="" style="width: 345px; height: 200px;" /></a>
+                            <a href="{{URL::to('/shop')}}"><img src="{{ $v_slider-> image}}" alt="" style="width: 345px; height: 200px;" /></a>
                         <?php }} ?>
                         </div>
                     </div>
@@ -723,7 +723,7 @@
                                         <div class="feature-slider-item swiper-slide">
                                             <article class="list-product">
                                                 <div class="img-block">
-                                                    <a href="single-product.html" class="thumbnail">
+                                                    <a href="{{URL::to('/product')}}" class="thumbnail">
                                                         <img class="first-img" src="{{URL::to('frontend/assets/images/product-image/6.jpg')}}" alt="" />
                                                         <img class="second-img" src="{{URL::to('frontend/assets/images/product-image/7.jpg')}}" alt="" />
                                                     </a>

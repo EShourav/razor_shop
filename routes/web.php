@@ -31,3 +31,7 @@ Route::get('/add_size', 'SliderController@addsizepage');
 Route::post('/save_size','SliderController@savesize');
 
 
+
+Route::get('/shop', 'shopController@index');
+
+
