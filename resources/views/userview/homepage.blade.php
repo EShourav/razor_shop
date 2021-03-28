@@ -660,7 +660,7 @@
                                         </ul>
                                 </div>
                                     <ul>
-                                        <li class="cart"><a class="cart-btn" href="#"><button type="button" class="btn btn-primary">ADD TO CART</button></a></li>
+                                        <li class="cart"><a class="cart-btn" href="{{URL::to('/view_product/'.$v_f_product->id)}}"><button type="button" class="btn btn-primary">ADD TO CART</button></a></li>
                                         <li>
                                             <a href="wishlist.html"><button type="button" class="btn btn-primary"><i class="icon-heart"></i></button></a>
                                         </li>

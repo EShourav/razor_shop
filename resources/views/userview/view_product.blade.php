@@ -60,14 +60,18 @@
                     <div class="pro-details-list">
                         <p>{{ $product_details->short_description }}</p>
                     </div>
-                    <div class="pro-details-quality mt-0px">
-                        <div class="cart-plus-minus">
-                            <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" />
+                    <form action="{{url('/add_to_cart')}}" method="post">
+                    {{ csrf_field() }}
+                        <div class="pro-details-quality mt-0px">
+                            <div class="cart-plus-minus">
+                                <input class="cart-plus-minus-box" type="text" name="qty" value="1" />
+                            </div>
+                            <input type="hidden" name="id" value="{{$product_details->id}}">
+                            <div class="pro-details-cart btn-hover">
+                                <button type="submit" class="btn btn-primary">Add To Cart</button>
+                            </div>
                         </div>
-                        <div class="pro-details-cart btn-hover">
-                            <a href="#">  Add To Cart</a>
-                        </div>
-                    </div>
+                    </form>
                     <div class="pro-details-wish-com">
                         <div class="pro-details-wishlist">
                             <a href="#"><i class="icon-heart"></i>Add to wishlist</a>
