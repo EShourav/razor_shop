@@ -33,5 +33,6 @@ Route::post('/save_size','SliderController@savesize');
 
 
 Route::get('/shop', 'shopController@index');
+Route::get('/view_product/{id}', 'shopController@singleproduct');
 
 

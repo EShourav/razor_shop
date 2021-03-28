@@ -46,7 +46,7 @@
                                 <div class="col-xl-3 col-md-4 col-sm-6 ">
                                     <article class="list-product">
                                         <div class="img-block">
-                                            <a href="single-product.html" class="thumbnail">
+                                            <a href="{{URL::to('/view_product/'.$v_products->id)}}" class="thumbnail">
                                                 <img class="first-img" src="{{ $v_products->cover_photo }}" alt="" />
                                             </a>
                                             <div class="quick-view">
@@ -56,7 +56,7 @@
                                             </div>
                                         </div>
                                         <div class="product-decs">
-                                            <a class="inner-link" href="shop-4-column.html"><span>{{ $v_products->title}}</span></a>
+                                            <a class="inner-link" href="{{URL::to('/view_product/'.$v_products->id)}}"><span>{{ $v_products->title}}</span></a>
                                             <div class="rating-product">
                                                 <i class="ion-android-star"></i>
                                                 <i class="ion-android-star"></i>

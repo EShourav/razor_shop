@@ -24,4 +24,18 @@ class shopController extends Controller
     	return view('layout')
     			->with('userview.shop',$manage_published_products);
     }
+
+    public function singleproduct($id)
+    {
+    	$product_details=DB::table('product')
+                        ->join('tbl_category','product.category_id', '=', 'tbl_category.id')
+                        ->join('tbl_brands','product.brand_id','=','tbl_brands.id')
+                        ->select('product.*','tbl_category.name','tbl_brands.name')
+                        ->where('product.id', $id)
+                        ->first();
+        $manage_product_details=view('userview.view_product')
+                ->with('product_details',$product_details);
+        return view('layout')
+                ->with('userview.view_product',$manage_product_details);
+    }
 }
