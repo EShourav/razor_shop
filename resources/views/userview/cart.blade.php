@@ -60,8 +60,7 @@
                                     </td>
                                     <td class="product-subtotal">{{$v_contents->total}}</td>
                                     <td class="product-remove">
-                                        <a href="#"><i class="icon-pencil"></i></a>
-                                        <a href="#"><i class="icon-close"></i></a>
+                                        <a href="{{URL::to('/remove_item/'.$v_contents->rowId)}}"><i class="icon-close"></i></a>
                                     </td>
                                 </tr>
                             <?php }?>
@@ -76,7 +75,7 @@
                                 </div>
                                 <div class="cart-clear">
                                     <button>Update Shopping Cart</button>
-                                    <a href="#">Clear Shopping Cart</a>
+                                    <a href="{{URL::to('/delete_cart')}}">Clear Shopping Cart</a>
                                 </div>
                             </div>
                         </div>

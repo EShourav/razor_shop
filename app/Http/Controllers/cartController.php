@@ -42,4 +42,16 @@ class cartController extends Controller
         Cart::update($rowId, $qty);
         return Redirect::to('/show_cart');
     }
+
+    public function destroycart()
+    {
+    	Cart::destroy();
+    	return Redirect::to('/shop');
+    }
+
+    public function removeitem($id)
+    {
+    	Cart::remove($id);
+    	return Redirect::to('show_cart');
+    }
 }

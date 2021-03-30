@@ -37,5 +37,7 @@ Route::get('/view_product/{id}', 'shopController@singleproduct');
 Route::post('/add_to_cart','cartController@addtocart');
 Route::get('/show_cart', 'cartController@showcart');
 Route::post('/update_cart', 'cartController@updatecart');
+Route::get('/delete_cart', 'cartController@destroycart');
+Route::get('/remove_item/{rowId}', 'cartController@removeitem');
 
 
