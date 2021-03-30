@@ -11,6 +11,7 @@
 |
 */
 
+//	F R O N T E N D     R O U T E S
 Route::get('/','homeController@index');
 
 Route::get('/admin', 'adminController@dashboard');

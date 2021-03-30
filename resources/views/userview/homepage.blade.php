@@ -8,34 +8,37 @@
                         <h4 class="menu-title be-af-none">All Cattegories</h4>
                         <ul class="menu-content display-block">
                             <?php
-                            $all_category_info=DB::table('tbl_category')->get();
-                            foreach($all_category_info as $v_category)
-                            {
-                                if( $v_category->parent_id==''){?>
-                                    <li class="menu-item">
-                                        <a href="#">{{ $v_category->name }} <i class="ion-ios-arrow-right"></i></a>
-                                    <?php
-                                    $now_cat=$v_category->name;
-                                    $all_sub_cat = DB::table('tbl_category')
-                                                    ->where('parent_id', $now_cat)
-                                                    ->get();
-                                    foreach($all_sub_cat as $v_cat){?>
-                                        <ul class="sub-menu flex-wrap">
-                                            <li>
-                                                <ul class="submenu-item">
-                                                    <li><a href="#">{{ $v_cat -> name }}</a></li>
-                                                </ul>
-                                            </li>
+                                $all_category_info=DB::table('tbl_category')->get();
+                                foreach ($all_category_info as $v_category){
+                                    if($v_category->parent_id==''){
+                            ?>
+                            <li class="menu-item">
+                                <a href="#">{{ $v_category->name }} <i class="ion-ios-arrow-right"></i></a>
+                            <?php 
+                                
+                            ?>
+                                    <ul class="sub-menu flex-wrap">
+                                        <?php 
+foreach ($all_category_info as $v_sub_cat) {
+                                        if($v_sub_cat->parent_id==$v_category->name){
+                                            ?>
+                                        <li>
+                                            <a href="#">
+                                                 {{$v_sub_cat->name}}
+                                            </a>
+                                        </li>
+                                           
+                                           <?php }}?>
+                                            <!-- <li>
+                                                <img src="assets/images/menu-image/banner-mega1.jpg" alt="" />
+                                            </li> -->
                                         </ul>
+                                    <?php ?>
+                                        <!-- sub menu -->
+                                    </li>
                                     <?php
-                                    }?>
-                                    </li><?php
-                                }
-                            }?>
-                                    
-                                    <!-- <li>
-                                        <img src="{{URL::to('frontend/assets/images/menu-image/banner-mega1.jpg')}}" alt="" />
-                                    </li> --> 
+                                    }}
+                                    ?>
                         </ul>
                         <!-- menu content -->
                     </div>
