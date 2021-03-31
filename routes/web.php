@@ -14,6 +14,9 @@
 //	F R O N T E N D     R O U T E S
 Route::get('/','homeController@index');
 
+Route::get('/view_category/{name}', 'homeController@viewbycategory');
+
+
 Route::get('/admin', 'adminController@dashboard');
 Route::get('/add_category', 'categoryController@addcategory');
 Route::post('/save_category', 'categoryController@savecategory');

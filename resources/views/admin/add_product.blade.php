@@ -43,7 +43,6 @@
 											} ?>
 									</select>
 								</div>
-
 								<div class="form-group">
 									<label for="exampleInputEmail1">Size *</label>
 									<input type="text" class="form-control" id="exampleInputEmail1" placeholder="100 characters maximum" name="size" required="">
@@ -57,11 +56,11 @@
 									<input type="text" class="form-control" id="exampleInputEmail1" placeholder="100 characters maximum" name="title" required="">
 								</div>
 								<div class="form-group">
-									<label for="exampleInputEmail1">Eng</label>
+									<label for="exampleInputEmail1">Eng *</label>
 									<input type="text" class="form-control" id="exampleInputEmail1" placeholder="100 characters maximum" name="eng">
 								</div>
 								<div class="form-group">
-									<label for="exampleInputEmail1">Slug</label>
+									<label for="exampleInputEmail1">Slug *</label>
 									<input type="text" class="form-control" id="exampleInputEmail1" placeholder="200 characters maximum" name="slug">
 								</div>
 								<div class="form-group">

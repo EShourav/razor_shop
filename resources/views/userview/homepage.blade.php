@@ -23,7 +23,7 @@ foreach ($all_category_info as $v_sub_cat) {
                                         if($v_sub_cat->parent_id==$v_category->name){
                                             ?>
                                         <li>
-                                            <a href="#">
+                                            <a href="{{URL::to('/view_category/'.$v_sub_cat->name)}}">
                                                  {{$v_sub_cat->name}}
                                             </a>
                                         </li>
