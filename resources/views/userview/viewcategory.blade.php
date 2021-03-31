@@ -170,21 +170,28 @@
                         <div class="sidebar-widget mt-30">
                             <h4 class="pro-sidebar-title">Brand</h4>
                             <div class="sidebar-widget-list">
+                            	<?php foreach ($productByCategory as $v_productByCategory) {
+		                		$cat_id=$v_productByCategory->category_id;
+		                	}
+		                		$all_brand_info=DB::table('tbl_brands')
+		                						->join('product','product.brand_id','=','tbl_brands.id')
+		                						->select('tbl_brands.*')
+		                						->distinct()
+		                						->where('product.category_id',$cat_id)
+		                						->get();
+		                		foreach ($all_brand_info as $v_brand) {
+		                	?>
                                 <ul>
                                     <li>
                                         <div class="sidebar-widget-list-left">
-                                            <input type="checkbox" /> <a href="#">Studio Design<span>(10)</span> </a>
-                                            <span class="checkmark"></span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="sidebar-widget-list-left">
-                                            <input type="checkbox" value="" /> <a href="#">Graphic Corner<span>(7)</span></a>
+                                            <input type="checkbox" /> <a href="#">{{$v_brand->name}}</a>
                                             <span class="checkmark"></span>
                                         </div>
                                     </li>
                                 </ul>
+                                <?php } ?>
                             </div>
+                        
                         </div>
                     </div>
                 </div>
