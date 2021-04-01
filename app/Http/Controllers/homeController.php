@@ -35,4 +35,17 @@ class homeController extends Controller
         return view('layout')
                 ->with('userview.viewcategory',$manage_productByCategory);
     }
+
+    public function viewbyparentcategory($name)
+    {
+    	$productByCategory=DB::table('product')
+    				->join('tbl_category','product.category_id','=','tbl_category.id')
+    				->where('tbl_category.parent_id',$name)
+    				->select('product.*')
+    				->get();
+    	$manage_productByCategory=view('userview.viewcategory')
+    			->with('productByCategory',$productByCategory);
+    	return view('layout')
+    			->with('userview.viewcategory',$manage_productByCategory);
+    }
 }

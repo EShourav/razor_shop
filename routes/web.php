@@ -15,6 +15,7 @@
 Route::get('/','homeController@index');
 
 Route::get('/view_category/{name}', 'homeController@viewbycategory');
+Route::get('/view_mcategory/{name}', 'homeController@viewbyparentcategory');
 
 
 Route::get('/admin', 'adminController@dashboard');

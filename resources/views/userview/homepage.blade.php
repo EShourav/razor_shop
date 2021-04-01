@@ -594,12 +594,12 @@ foreach ($all_category_info as $v_sub_cat) {
                         <div class="category-slider-item swiper-slide">
                             <div class="category-slider-bg ">
                                 <div class="thumb-category">
-                                    <a href="single-product.html">
+                                    <a href="{{URL::to('/view_mcategory/'.$v_category->name)}}">
                                         <img src="{{$v_category->image}}" alt="product-image.jpg" />
                                     </a>
                                 </div>
                                 <div class="category-discript">
-                                    <h4>{{ $v_category->name}}</h4>
+                                    <h4><a href="{{URL::to('/view_mcategory/'.$v_category->name)}}">{{ $v_category->name}}</a></h4>
                                 </div>
                             </div>
                         </div>

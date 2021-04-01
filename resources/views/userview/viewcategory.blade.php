@@ -126,6 +126,7 @@
                 	<?php foreach ($productByCategory as $v_productByCategory) {
                 		$cat_id=$v_productByCategory->category_id;
                 	}
+                	
                 		$all_cat_info=DB::table('tbl_category')
                 						->where('id',$cat_id)
                 						->get();
