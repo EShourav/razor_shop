@@ -19,7 +19,7 @@
                             ?>
                                     <ul class="sub-menu flex-wrap">
                                         <?php 
-foreach ($all_category_info as $v_sub_cat) {
+                                    foreach ($all_category_info as $v_sub_cat) {
                                         if($v_sub_cat->parent_id==$v_category->name){
                                             ?>
                                         <li>
@@ -118,7 +118,6 @@ foreach ($all_category_info as $v_sub_cat) {
                                 </div>
                                         </div>
                         </div>
-                        <!-- Static Single Item End -->
                         <!-- Static Single Item Start -->
                         <div class="col-lg-4 col-xs-12 col-md-6 col-sm-6 mb-sm-30px">
                             <div class="single-static">
@@ -130,7 +129,6 @@ foreach ($all_category_info as $v_sub_cat) {
                             </div>
                         </div>
                         <!-- Static Single Item End -->
-                        <!-- Static Single Item Start -->
                         <div class="col-lg-4 col-xs-12 col-md-6 col-sm-6">
                             <div class="single-static">
                                 <img src="{{URL::to('frontend/assets/images/icons/static-icons-3.png')}}" alt="" class="img-responsive" />
@@ -159,7 +157,7 @@ foreach ($all_category_info as $v_sub_cat) {
                 <!-- Header Logo Start -->
                 <div class="col">
                     <div class="header-logo">
-                        <a href="index.html"><img class="img-responsive" src="{{URL::to('frontend/assets/images/logo/logo.jpg')}}" alt="logo.jpg" /></a>
+                        <a href="{{URL::to('/')}}"><img class="img-responsive" src="{{URL::to('frontend/assets/images/logo/logo.jpg')}}" alt="logo.jpg" /></a>
                     </div>
                 </div>
                 <!-- Header Logo End -->
@@ -255,18 +253,13 @@ foreach ($all_category_info as $v_sub_cat) {
                                     foreach($all_category_info as $v_sub_cat){
                                         if( $v_sub_cat->parent_id==$v_category->name){?>
                                     <ul class="category-mega-menu category-mega-menu-6">
-                                        <li><a href="#">{{ $v_sub_cat -> name}}</a></li>
+                                        <li><a href="{{URL::to('/view_mcategory/'.$v_category->name)}}">{{ $v_sub_cat -> name}}</a></li>
                                     </ul>
                                 <?php }} ?>
                                 </li>
                                                 
                                 <?php }
                                 }?>
-                                <li><a href="#">Televisions</a></li>
-                                <li class="hidden"><a href="#">Projectors</a></li>
-                                <li>
-                                    <a href="#" id="more-btn"><i class="ion-ios-plus-empty" aria-hidden="true"></i> More Categories</a>
-                                </li>
                             </ul>
                         </nav>
                     </div>
@@ -385,65 +378,11 @@ foreach ($all_category_info as $v_sub_cat) {
             </div>
             <div class="offcanvas-menu">
                 <ul>
-                    <li><a href="#"><span class="menu-text">Home</span></a>
+                    <li><a href="{{URL::to('/')}}"><span class="menu-text">Home</span></a>
                     </li>
-                    <li><a href="#"><span class="menu-text">Shop</span></a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="#"><span class="menu-text">Shop Grid</span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="shop-3-column.html">Shop Grid 3 Column</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#"><span class="menu-text">Shop List</span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="shop-list.html">Shop List</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#"><span class="menu-text">Shop Single</span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="single-product.html">Shop Single</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#"><span class="menu-text">Shop Single</span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="single-product-slider.html">Shop Slider</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a href="#"><span class="menu-text">Pages</span></a>
-                        <ul class="sub-menu">
-                            <li><a href="about.html">About Page</a></li>
-                            <li><a href="cart.html">Cart Page</a></li>
-                            <li><a href="checkout.html">Checkout Page</a></li>
-                            <li><a href="compare.html">Compare Page</a></li>
-                            <li><a href="login.html">Login & Register Page</a></li>
-                            <li><a href="my-account.html">Account Page</a></li>
-                            <li><a href="wishlist.html">Wishlist Page</a></li>
-                        </ul>
+                    <li><a href="{{URL::to('/shop')}}"><span class="menu-text">Shop</span></a>
                     </li>
                     <li><a href="#"><span class="menu-text">Blog</span></a>
-                        <ul class="sub-menu">
-                            <li><a href="#"><span class="menu-text">Blog Grid</span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="blog-grid-left-sidebar.html">Blog Grid Left Sidebar</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#"><span class="menu-text">Blog List</span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="blog-list-left-sidebar.html">Blog List Left Sidebar</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#"><span class="menu-text">Blog Single</span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="blog-single-left-sidebar.html">Blog Single Left Sidebar</a></li>
-                                </ul>
-                            </li>
-                        </ul>
                     </li>
                     <li><a href="contact.html">Contact Us</a></li>
                 </ul>
@@ -492,8 +431,14 @@ foreach ($all_category_info as $v_sub_cat) {
                             <div class="slider-area slider-height-2 mb-md-30px mb-lm-30px mb-sm-30px">
                                 <div class="hero-slider swiper-container">
                                     <div class="swiper-wrapper">
+                                        <?php 
+                                            $all_slider_info=DB::table('sliders')->get();
+                                            foreach($all_slider_info as $v_slider)
+                                            {
+                                                if($v_slider->status==1 && $v_slider->place==1 ){
+                                        ?>
                                         <!-- Single Slider  -->
-                                        <div class="swiper-slide bg-img d-flex" style="background-image: url(frontend/assets/images/slider-image/sample-3.jpg);">
+                                        <div class="swiper-slide bg-img d-flex" style="background-image: url({{$v_slider->image}});">
                                             <div class="container align-self-center">
                                                 <div class="slider-content-1 slider-animated-1 text-left pl-60px">
                                                     <span class="animated color-white">GALAXY WATCH</span>
@@ -501,10 +446,11 @@ foreach ($all_category_info as $v_sub_cat) {
                                                         Pre-Order <br />
                                                         <strong>Exclusive</strong>
                                                     </h1>
-                                                    <a href="shop-4-column.html" class="shop-btn animated">SHOP NOW</a>
+                                                    <a href="{{URL::to('/shop')}}" class="shop-btn animated">SHOP NOW</a>
                                                 </div>
                                             </div>
                                         </div>
+                                    <?php }} ?>
                                        
                                         <!-- Single Slider  -->
                                     </div>
@@ -513,16 +459,6 @@ foreach ($all_category_info as $v_sub_cat) {
                                 </div>
                             </div>
                             <!-- Slider End -->
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="banner-area">
-                                <div class="banner-wrapper mb-md-30px mb-lm-30px mb-sm-30px">
-                                    <a href="shop-4-column.html"><img src="{{URL::to('frontend/assets/images/banner-image/9.jpg')}}" alt="" /></a>
-                                </div>
-                                <div class="banner-wrapper mb-0px">
-                                    <a href="shop-4-column.html"><img src="{{URL::to('frontend/assets/images/banner-image/10.jpg')}}" alt="" /></a>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <!-- row -->
@@ -595,7 +531,7 @@ foreach ($all_category_info as $v_sub_cat) {
                             <div class="category-slider-bg ">
                                 <div class="thumb-category">
                                     <a href="{{URL::to('/view_mcategory/'.$v_category->name)}}">
-                                        <img src="{{$v_category->image}}" alt="product-image.jpg" />
+                                        <img src="{{$v_category->image}}" style="height: 200px;" alt="product-image.jpg" />
                                     </a>
                                 </div>
                                 <div class="category-discript">
@@ -631,15 +567,15 @@ foreach ($all_category_info as $v_sub_cat) {
                             $all_product=DB::table('product')
                                         ->join('tbl_category','product.category_id', '=', 'tbl_category.id')
                                         ->join('tbl_brands','product.brand_id', '=', 'tbl_brands.id')
-                                        ->select('product.*', 'tbl_brands.*')
+                                        ->select('product.*', 'tbl_brands.name as bname')
                                         ->get();
-                            foreach ($all_product as $v_f_product) {           
+                            foreach ($all_product as $v_f_product) {    
                         ?>
                         <div class="feature-slider-item swiper-slide">    
                             <article class="list-product">
                                 <div class="img-block">
-                                    <a href="single-product.html" class="thumbnail">
-                                        <img class="first-img" src="{{ $v_f_product-> cover_photo }}" alt=""/>
+                                    <a href="{{URL::to('/view_product/'.$v_f_product->id)}}" class="thumbnail">
+                                        <img class="first-img" style="height: 200px;" src="{{ $v_f_product-> cover_photo }}" alt=""/>
                                     </a>
                                     <div class="quick-view">
                                         <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" data-toggle="modal" data-target="#exampleModal"></a>
@@ -649,8 +585,8 @@ foreach ($all_category_info as $v_sub_cat) {
                                     <li class="new">New</li>
                                 </ul>
                                 <div class="product-decs">
-                                    <a class="inner-link" href="shop-4-column.html"><span>{{ $v_f_product->name }}</span></a>
-                                    <h2><a href="single-product.html" class="product-link">{{ $v_f_product->title }}</a></h2>
+                                    <a class="inner-link" href="{{URL::to('/view_product/'.$v_f_product->id)}}"><span>{{ $v_f_product->bname }}</span></a>
+                                    <h2><a href="{{URL::to('/view_product/'.$v_f_product->id)}}" class="product-link">{{ $v_f_product->title }}</a></h2>
                                     <div class="rating-product">
                                         <i class="ion-android-star"></i>
                                         <i class="ion-android-star"></i>
@@ -690,7 +626,7 @@ foreach ($all_category_info as $v_sub_cat) {
                 <div class="row">
                     <div class="col-md-12">
                         <div class="banner-wrapper">
-                            <a href="shop-4-column.html"><img src="{{URL::to('frontend/assets/images/banner-image/4.jpg')}}" alt=""/></a>
+                            <a href="{{URL::to('/shop')}}"><img src="{{URL::to('frontend/assets/images/banner-image/4.jpg')}}" alt=""/></a>
                         </div>
                     </div>
                 </div>
@@ -708,40 +644,35 @@ foreach ($all_category_info as $v_sub_cat) {
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="tab" href="#tab-1">Smart Home Appliances</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#tab-3">Smart Watches</a>
-                        </li>
                     </ul>
                 </div>
 
                 <!-- Tab panes -->
                 <div class="tab-content banner-area">
-                    <!-- 1st tab start -->
                     <div id="tab-1" class="tab-pane active">
                         <div class="row">
                             <div class="col-xs-12 col-sm-12">
                                 <div class="feature-slider-2 slider-nav-style-1">
                                     <div class="feature-slider-wrapper swiper-wrapper">
+                                        <?php
+                                            $pro=DB::table('product')
+                                                ->join('tbl_brands', 'product.brand_id','=','tbl_brands.id')
+                                                ->where('product.category_id', 20)
+                                                ->select('product.*', 'tbl_brands.name as bname')
+                                                ->get();
+                                            foreach ($pro as $v_pro) {
+                                        ?>
                                         <!-- Single Item -->
                                         <div class="feature-slider-item swiper-slide">
                                             <article class="list-product">
                                                 <div class="img-block">
                                                     <a href="{{URL::to('/product')}}" class="thumbnail">
-                                                        <img class="first-img" src="{{URL::to('frontend/assets/images/product-image/6.jpg')}}" alt="" />
-                                                        <img class="second-img" src="{{URL::to('frontend/assets/images/product-image/7.jpg')}}" alt="" />
+                                                        <img class="first-img" src="{{URL::to($v_pro->cover_photo)}}" style="height: 200px;" alt="" />
                                                     </a>
-                                                    <div class="quick-view">
-                                                        <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" data-toggle="modal" data-target="#exampleModal">
-                                                            <i class="icon-magnifier icons"></i>
-                                                        </a>
-                                                    </div>
                                                 </div>
-                                                <ul class="product-flag">
-                                                    <li class="new">New</li>
-                                                </ul>
                                                 <div class="product-decs">
-                                                    <a class="inner-link" href="shop-4-column.html"><span>STUDIO DESIGN</span></a>
-                                                    <h2><a href="single-product.html" class="product-link">New Balance Arishi Sport v1</a></h2>
+                                                    <a class="inner-link" href="shop-4-column.html"><span>{{$v_pro->bname}}</span></a>
+                                                    <h2><a href="single-product.html" class="product-link">{{$v_pro->title}}</a></h2>
                                                     <div class="rating-product">
                                                         <i class="ion-android-star"></i>
                                                         <i class="ion-android-star"></i>
@@ -749,23 +680,26 @@ foreach ($all_category_info as $v_sub_cat) {
                                                         <i class="ion-android-star"></i>
                                                         <i class="ion-android-star"></i>
                                                     </div>
-                                                    <div class="pricing-meta">
                                                         <ul>
-                                                            <li class="old-price not-cut">€18.90</li>
+                                                            <li class="old-price not-cut">{{ $v_pro->sell_price }} BDT</li>
                                                         </ul>
-                                                    </div>
+                                                    
                                                 </div>
                                                     <ul>
-                                                        <li class="cart"><button type="button" class="btn btn-light"><a title="Add to cart" href="#"><i class="icon-bag"></i></a></button></li>
                                                         <li>
-                                                            <a title="Add to wishlist" href="wishlist.html"><i class="icon-heart"></i></a>
+                                                            <button type="button" class="btn btn-light"><a title="Add to cart" href="#"><i class="icon-bag"></i></a></button></li>
+                                                        <li>
+                                                            <button type="button" class="btn btn-light">
+                                                            <a title="Add to wishlist" href="wishlist.html"><i class="icon-heart"></i></a></button>
                                                         </li>
                                                         <li>
-                                                            <a title="Add to compare" href="compare.html"><i class="icon-shuffle"></i></a>
+                                                            <button type="button" class="btn btn-light">
+                                                            <a title="Add to compare" href="compare.html"><i class="icon-shuffle"></i></a></button>
                                                         </li>
                                                     </ul>
                                             </article>
                                         </div>
+                                    <?php } ?>
                                     </div>
                                     <!-- Add Arrows -->
                                     <div class="swiper-buttons">
@@ -776,68 +710,6 @@ foreach ($all_category_info as $v_sub_cat) {
                             </div>
                         </div>
                     </div>
-                    <!-- 1st tab end -->
-                    <!-- 3rd tab start -->
-                    <div id="tab-3" class="tab-pane fade">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                <div class="feature-slider-2 slider-nav-style-1">
-                                    <div class="feature-slider-wrapper swiper-wrapper">
-                                        <!-- Single Item -->
-                                        <div class="feature-slider-item swiper-slide">
-                                            <article class="list-product">
-                                                <div class="img-block">
-                                                    <a href="single-product.html" class="thumbnail">
-                                                        <img class="first-img" src="{{URL::to('frontend/assets/images/product-image/6.jpg')}}" alt="" />
-                                                        <img class="second-img" src="{{URL::to('frontend/assets/images/product-image/7.jpg')}}" alt="" />
-                                                    </a>
-                                                    <div class="quick-view">
-                                                        <a class="quick_view" href="#" data-link-action="quickview" title="Quick view" data-toggle="modal" data-target="#exampleModal">
-                                                            <i class="icon-magnifier icons"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <ul class="product-flag">
-                                                    <li class="new">New</li>
-                                                </ul>
-                                                <div class="product-decs">
-                                                    <a class="inner-link" href="shop-4-column.html"><span>STUDIO DESIGN</span></a>
-                                                    <h2><a href="single-product.html" class="product-link">New Balance Arishi Sport v1</a></h2>
-                                                    <div class="rating-product">
-                                                        <i class="ion-android-star"></i>
-                                                        <i class="ion-android-star"></i>
-                                                        <i class="ion-android-star"></i>
-                                                        <i class="ion-android-star"></i>
-                                                        <i class="ion-android-star"></i>
-                                                    </div>
-                                                    <div class="pricing-meta">
-                                                        <ul>
-                                                            <li class="old-price not-cut">€18.90</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                    <ul>
-                                                        <li class="cart"><button type="button" class="btn btn-light"><a title="Add to cart" href="#"><i class="icon-bag"></i></a></button></li>
-                                                        <li>
-                                                            <a title="Add to wishlist" href="wishlist.html"><i class="icon-heart"></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a title="Add to compare" href="compare.html"><i class="icon-shuffle"></i></a>
-                                                        </li>
-                                                    </ul>
-                                            </article>
-                                        </div>
-                                    </div>
-                                    <!-- Add Arrows -->
-                                    <div class="swiper-buttons">
-                                        <div class="swiper-button-next"></div>
-                                        <div class="swiper-button-prev"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 3rd tab end -->
                 </div>
             </div>
         </section>
@@ -847,29 +719,22 @@ foreach ($all_category_info as $v_sub_cat) {
         <div class="brand-area mb-60px">
             <div class="container">
                 <div class="brand-slider slider-nav-style-1  slider-nav-style-2">
+                    
                     <div class="brand-slider-wrapper swiper-wrapper">
+                        <?php
+                        $brand_photo=DB::table('tbl_brands')
+                                    ->get();
+                        foreach ($brand_photo as $v_brand_photo) {
+
+                    ?>
                         <div class="brand-slider-item swiper-slide">
-                            <a href="#"><img src="{{URL::to('frontend/assets/images/brand-logo/1.jpg')}}" alt="" /></a>
+                            <a href="{{URL::to('view_brand/'.$v_brand_photo->name)}}"><img src="{{$v_brand_photo->image}}" style="width: 195px; height: 70px;" alt="" /></a>
                         </div>
-                        <div class="brand-slider-item swiper-slide">
-                            <a href="#"><img src="{{URL::to('frontend/assets/images/brand-logo/2.jpg')}}" alt="" /></a>
-                        </div>
-                        <div class="brand-slider-item swiper-slide">
-                            <a href="#"><img src="{{URL::to('frontend/assets/images/brand-logo/3.jpg')}}" alt="" /></a>
-                        </div>
-                        <div class="brand-slider-item swiper-slide">
-                            <a href="#"><img src="{{URL::to('frontend/assets/images/brand-logo/4.jpg')}}" alt="" /></a>
-                        </div>
-                        <div class="brand-slider-item swiper-slide">
-                            <a href="#"><img src="{{URL::to('frontend/assets/images/brand-logo/5.jpg')}}" alt="" /></a>
-                        </div>
-                        <div class="brand-slider-item swiper-slide">
-                            <a href="#"><img src="{{URL::to('frontend/assets/images/brand-logo/1.jpg')}}" alt="" /></a>
-                        </div>
-                        <div class="brand-slider-item swiper-slide">
-                            <a href="#"><img src="{{URL::to('frontend/assets/images/brand-logo/2.jpg')}}" alt="" /></a>
-                        </div>
+                        <?php } ?>
+                        
+
                     </div>
+                
                     <!-- Add Arrows -->
                     <div class="swiper-buttons">
                         <div class="swiper-button-next"></div>

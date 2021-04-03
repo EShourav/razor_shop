@@ -28,7 +28,6 @@ class homeController extends Controller
                         ->select('product.*','tbl_category.name')
                         ->where('product.status',1)
                         ->where('product.category_id',$cat_id)
-                        ->limit(20)
                         ->get();
         $manage_productByCategory=view('userview.viewcategory')
                 ->with('productByCategory',$productByCategory);
@@ -47,5 +46,23 @@ class homeController extends Controller
     			->with('productByCategory',$productByCategory);
     	return view('layout')
     			->with('userview.viewcategory',$manage_productByCategory);
+    }
+
+    public function viewbybrand($name)
+    {
+    	$all_bra_info=DB::table('tbl_brands')
+    					->where('tbl_brands.name',$name)
+    					->first();
+    	$bra_id=$all_bra_info->id;
+    	$productByBrands=DB::table('product')
+                        ->join('tbl_brands','product.brand_id', '=', 'tbl_brands.id')
+                        ->select('product.*','tbl_brands.name as bname')
+                        ->where('product.status',1)
+                        ->where('product.brand_id',$bra_id)
+                        ->get();
+        $manage_brandsByCategory=view('userview.viewbrand')
+                ->with('productByBrands',$productByBrands);
+        return view('layout')
+                ->with('userview.viewbrand',$manage_brandsByCategory);
     }
 }

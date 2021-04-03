@@ -14,11 +14,13 @@ class categoryController extends Controller
 {
     public function addcategory()
     {
+        $this->AdminAuthCheck();
     	return view('admin.add_category');
     }
 
     public function savecategory(Request $request)
     {
+        $this->AdminAuthCheck();
     	$data = array();
     	$data['parent_id'] = $request->parent_category;
     	if(strpos($data['parent_id'], "Select") !== false)
@@ -62,6 +64,25 @@ class categoryController extends Controller
 
     public function allcategory()
     {
+        $this->AdminAuthCheck();
     	return view('admin.all_category');
+    }
+
+    public function AdminAuthCheck()
+    {
+        $admin_id=Session::get('admin_id');
+        if($admin_id)
+        {
+            $check_id=DB::table('tbl_users')
+                    ->where('user_id',$admin_id)
+                    ->where('user_role_id','1')
+                    ->first();
+            if($check_id->user_id==$admin_id)
+                return;
+        }
+        else
+        {
+            return Redirect::to('/login')->send();
+        }
     }
 }

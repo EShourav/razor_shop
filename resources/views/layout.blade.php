@@ -45,19 +45,27 @@
                 <div class="container">
                     <div class="header-nav-wrapper d-md-flex d-sm-flex d-xl-flex d-lg-flex justify-content-between">
                         <div class="header-static-nav">
-                            <p>Welcome you to Tech Den Store!</p>
+                            <p>Welcome you to Tech Den Store!
+                            </p>
                         </div>
                         <div class="header-menu-nav">
                             <ul class="menu-nav">
                                 <li>
                                     <div class="dropdown">
+                                        <?php
+                                        $user_id=Session::get('user_id');
+                                        if($user_id!=NULL){ ?>
                                         <button type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Setting <i class="ion-ios-arrow-down"></i></button>
-
                                         <ul class="dropdown-menu animation slideDownIn" aria-labelledby="dropdownMenuButton">
-                                            <li><a href="#">My account</a></li>
-                                            <li><a href="#">Checkout</a></li>
-                                            <li><a href="#">Sign in</a></li>
-                                        </ul>
+                                        
+                                            <li><a href="{{URL::to('/user_account/'.$user_id)}}">Account</a></li>
+                                            <li><a href="{{URL::to('/checkout')}}">Checkout</a></li>
+                                            <li><a href="{{URL::to('/logout')}}">Log Out</a></li>
+                                        
+                                        </ul><?php }
+                                        else{?>
+                                            <button  type="button" id="dropdownMenuButton"><a href="{{URL::to('/login')}}" class="button">Sign In</a></button>
+                                        <?php } ?>
                                     </div>
                                 </li>
                                 <!-- <li>
@@ -106,7 +114,7 @@
                                 </a>
                             </div>
                             <div class="logo">
-                                <a href="index.html"><img class="img-responsive" src="{{URL::to('frontend/assets/images/logo/techdenlogo.png')}}" alt="logo.jpg" /></a>
+                                <a href="{{URL::to('/')}}"><img class="img-responsive" src="{{URL::to('frontend/assets/images/logo/techdenlogo.png')}}" alt="logo.jpg" /></a>
                             </div>
                         </div>
                         <div class="col-md-9 align-self-center">

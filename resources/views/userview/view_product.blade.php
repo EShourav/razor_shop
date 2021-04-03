@@ -24,7 +24,7 @@
                 <div class="product-details-img product-details-tab">
                     <div class="zoompro-wrap zoompro-2">
                         <div class="zoompro-border zoompro-span">
-                            <img class="zoompro" src="{{URL::to($product_details->cover_photo)}}" data-zoom-image="{{ $product_details->cover_photo}}" alt="" />
+                            <img class="zoompro" src="{{URL::to($product_details->cover_photo)}}" data-zoom-image="{{ URL::to('$product_details->cover_photo')}}" alt="" />
                         </div>
                     </div>
                     <div id="gallery" class="product-dec-slider-2 swiper-container">

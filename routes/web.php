@@ -13,10 +13,14 @@
 
 //	F R O N T E N D     R O U T E S
 Route::get('/','homeController@index');
+Route::get('/login', 'checkoutController@login');
+Route::post('/register', 'checkoutController@user_register');
+Route::post('/sign_in', 'checkoutController@signin');
+Route::get('/logout', 'checkoutController@logout');
 
 Route::get('/view_category/{name}', 'homeController@viewbycategory');
 Route::get('/view_mcategory/{name}', 'homeController@viewbyparentcategory');
-
+Route::get('/view_brand/{name}', 'homeController@viewbybrand');
 
 Route::get('/admin', 'adminController@dashboard');
 Route::get('/add_category', 'categoryController@addcategory');

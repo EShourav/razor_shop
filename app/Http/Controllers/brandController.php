@@ -14,11 +14,13 @@ class brandController extends Controller
 {
     public function addbrand()
     {
+        $this->AdminAuthCheck();
     	return view('admin.add_brand');
     }
 
     public function savebrand(Request $request)
     {
+        $this->AdminAuthCheck();
     	$data = array();
     	$data['name'] = $request->brand_name;
     	$data['eng'] = $request->brand_eng;
@@ -51,6 +53,25 @@ class brandController extends Controller
 
     public function allbrand()
     {
+        $this->AdminAuthCheck();
         return view('admin.all_brand');
+    }
+    
+    public function AdminAuthCheck()
+    {
+        $admin_id=Session::get('user_id');
+        $check_id=DB::table('tbl_users')
+                    ->where('user_id', $admin_id)
+                    ->get();
+        foreach ($check_id as $v_check) {
+            if($v_check->user_id==$admin_id)
+            {
+                return;
+            }
+            else
+            {
+                return Redirect::to('/login')->send();
+            }
+        }
     }
 }

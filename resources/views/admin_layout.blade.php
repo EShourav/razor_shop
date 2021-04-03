@@ -29,6 +29,12 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
+  <?php
+      $user_id=Session::get('user_id');
+      $user_info=DB::table('tbl_users')
+                ->where('user_id',$user_id)
+                ->first();
+    ?>
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -42,10 +48,21 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-bell"></i>
         </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <span class="dropdown-item dropdown-header">{{$user_info->user_name}}</span>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-envelope mr-2"></i> My Account
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="{{URL::to('/logout')}}" class="dropdown-item">
+            <i class="fas fa-users mr-2"></i> Logout
+          </a>
+        </div>
       </li>
     </ul>
   </nav>
@@ -60,15 +77,16 @@
       <span class="brand-text font-weight-light">Tech Den</span>
     </a>
 
+    
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{URL::to('adminlte/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="Admin Image">
+          <img src="{{URL::to($user_info->user_image)}}" class="img-circle elevation-2" alt="Admin Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Admin</a>
+          <a href="#" class="d-block">{{$user_info->user_name}}</a>
         </div>
       </div>
 

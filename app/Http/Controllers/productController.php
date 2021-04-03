@@ -14,12 +14,13 @@ class productController extends Controller
 {
     public function addproduct()
     {
+        $this->AdminAuthCheck();
     	return view('admin.add_product');
     }
 
     public function saveproduct(Request $request)
     {
-
+        $this->AdminAuthCheck();
     	$data = array();
     	$data['category_id'] = $request->category_id;
     	$data['brand_id'] = $request->brand_id;
@@ -101,4 +102,21 @@ class productController extends Controller
     	}
     }
 
+    public function AdminAuthCheck()
+    {
+        $admin_id=Session::get('user_id');
+        $check_id=DB::table('tbl_users')
+                    ->where('user_id', $admin_id)
+                    ->get();
+        foreach ($check_id as $v_check) {
+            if($v_check->user_id==$admin_id)
+            {
+                return;
+            }
+            else
+            {
+                return Redirect::to('/')->send();
+            }
+        }
+    }
 }

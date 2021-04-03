@@ -74,4 +74,21 @@ class SliderController extends Controller
         return Redirect::to('/size');
     }
 
+    public function AdminAuthCheck()
+    {
+        $admin_id=Session::get('user_id');
+        $check_id=DB::table('tbl_users')
+                    ->where('user_id', $admin_id)
+                    ->get();
+        foreach ($check_id as $v_check) {
+            if($v_check->user_id==$admin_id)
+            {
+                return;
+            }
+            else
+            {
+                return Redirect::to('/login')->send();
+            }
+        }
+    }
 }
